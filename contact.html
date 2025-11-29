@@ -1,42 +1,496 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Contact – ORE UAE</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact ORE Jewellery - Premium gold and bullion trading. Get in touch for enquiries, consultations, and business inquiries.">
+    <title>Contact Us – ORE Jewellery</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .breadcrumb {
+            padding: calc(var(--spacing-unit) * 3) 7%;
+            background: var(--neutral-100);
+            border-bottom: 1px solid var(--neutral-200);
+        }
+
+        .breadcrumb a {
+            color: var(--gold-700);
+            font-weight: 500;
+        }
+
+        .breadcrumb span {
+            color: var(--neutral-600);
+            margin: 0 calc(var(--spacing-unit) * 1);
+        }
+
+        .contact-hero {
+            padding: calc(var(--spacing-unit) * 12) 7% calc(var(--spacing-unit) * 8);
+            background: linear-gradient(135deg, var(--neutral-50) 0%, var(--gold-100) 100%);
+            text-align: center;
+        }
+
+        .contact-hero h1 {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            color: var(--neutral-900);
+        }
+
+        .contact-hero p {
+            font-size: 18px;
+            color: var(--neutral-600);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: calc(var(--spacing-unit) * 8);
+            padding: calc(var(--spacing-unit) * 10) 7%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: white;
+            padding: calc(var(--spacing-unit) * 6);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--neutral-200);
+        }
+
+        .contact-form h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: calc(var(--spacing-unit) * 1);
+            color: var(--neutral-900);
+        }
+
+        .form-subtitle {
+            font-size: 14px;
+            color: var(--neutral-600);
+            margin-bottom: calc(var(--spacing-unit) * 4);
+        }
+
+        .form-group {
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--neutral-700);
+            margin-bottom: calc(var(--spacing-unit) * 1);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: calc(var(--spacing-unit) * 2);
+            border-radius: 10px;
+            border: 1.5px solid var(--neutral-300);
+            font-size: 14px;
+            color: var(--neutral-900);
+            font-family: inherit;
+            transition: all var(--transition-base);
+            background: var(--neutral-50);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--gold-600);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: calc(var(--spacing-unit) * 2.5);
+            background: linear-gradient(135deg, var(--gold-700) 0%, var(--gold-600) 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            box-shadow: var(--shadow-md);
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--spacing-unit) * 4);
+        }
+
+        .info-card {
+            background: white;
+            padding: calc(var(--spacing-unit) * 5);
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--neutral-200);
+        }
+
+        .info-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--neutral-900);
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            display: flex;
+            align-items: center;
+            gap: calc(var(--spacing-unit) * 1.5);
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gold-100);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .info-card p {
+            font-size: 15px;
+            color: var(--neutral-700);
+            line-height: 1.7;
+            margin-bottom: calc(var(--spacing-unit) * 1);
+        }
+
+        .info-card a {
+            color: var(--gold-700);
+            font-weight: 600;
+            transition: all var(--transition-base);
+        }
+
+        .info-card a:hover {
+            color: var(--gold-800);
+        }
+
+        .response-message {
+            padding: calc(var(--spacing-unit) * 2);
+            border-radius: 10px;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            display: none;
+        }
+
+        .response-message.success {
+            background: var(--success-100);
+            color: var(--success-600);
+            border: 1px solid var(--success-600);
+            display: block;
+        }
+
+        .response-message.error {
+            background: var(--error-100);
+            color: var(--error-600);
+            border: 1px solid var(--error-600);
+            display: block;
+        }
+
+        .faq-section {
+            padding: calc(var(--spacing-unit) * 10) 7%;
+            background: var(--neutral-100);
+        }
+
+        .faq-section h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 700;
+            margin-bottom: calc(var(--spacing-unit) * 6);
+            color: var(--neutral-900);
+            text-align: center;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: calc(var(--spacing-unit) * 4);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            padding: calc(var(--spacing-unit) * 4);
+            border-radius: 16px;
+            border: 1px solid var(--neutral-200);
+        }
+
+        .faq-question {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--neutral-900);
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            display: flex;
+            align-items: flex-start;
+            gap: calc(var(--spacing-unit) * 2);
+        }
+
+        .faq-icon {
+            color: var(--gold-700);
+            font-weight: 700;
+            font-size: 20px;
+            flex-shrink: 0;
+            margin-top: calc(var(--spacing-unit) * 0.5);
+        }
+
+        .faq-answer {
+            font-size: 14px;
+            color: var(--neutral-700);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1024px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: calc(var(--spacing-unit) * 6);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-hero {
+                padding: calc(var(--spacing-unit) * 8) 5%;
+            }
+
+            .contact-container {
+                padding: calc(var(--spacing-unit) * 8) 5%;
+            }
+
+            .contact-form {
+                padding: calc(var(--spacing-unit) * 4);
+            }
+
+            .faq-section {
+                padding: calc(var(--spacing-unit) * 8) 5%;
+            }
+        }
+    </style>
 </head>
-
 <body>
-
-    <header>
-        <div class="logo">ORE</div>
+    <header class="top-bar">
+        <div class="logo">ORE<span>Jewellery</span></div>
         <nav>
             <a href="index.html">Home</a>
+            <a href="collections.html">Collections</a>
             <a href="bullion.html">Bullion</a>
-            <a href="jewellery.html">Jewellery</a>
-            <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
+            <a href="showrooms.html">Showrooms</a>
         </nav>
     </header>
 
-    <section class="section">
-        <h2>Contact ORE</h2>
-        <p>Dubai, UAE</p>
-        <p>Phone: +971-XXX-XXXXXX</p>
-        <p>Email: info@oreuae.com</p>
+    <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>Contact</span>
+    </div>
+
+    <section class="contact-hero">
+        <h1>Get in Touch</h1>
+        <p>Have questions about our collections or bullion products? Our dedicated team is ready to assist you with personalized service.</p>
     </section>
 
-    <section class="section">
-        <h3>Find Us</h3>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18..." width="100%" height="400" style="border:0;"
-            loading="lazy">
-        </iframe>
+    <section class="contact-container">
+        <div class="contact-form">
+            <h2>Send us a Message</h2>
+            <p class="form-subtitle">We'll get back to you within 24 hours</p>
+
+            <div id="responseMessage" class="response-message"></div>
+
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="inquiry">Inquiry Type</label>
+                    <select id="inquiry" name="inquiry" required>
+                        <option value="">Select an option</option>
+                        <option value="collections">Collections Enquiry</option>
+                        <option value="bullion">Bullion Trading</option>
+                        <option value="custom">Custom Design</option>
+                        <option value="valuation">Valuation Services</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+
+                <button type="submit" class="form-submit">Send Message</button>
+            </form>
+        </div>
+
+        <div class="contact-info">
+            <div class="info-card">
+                <h3>
+                    <div class="info-icon">📍</div>
+                    <div>
+                        <div>Premium Showroom</div>
+                    </div>
+                </h3>
+                <p>ORE Jewellery<br>Premium Gold & Bullion Trading Centre<br>Dubai, United Arab Emirates</p>
+            </div>
+
+            <div class="info-card">
+                <h3>
+                    <div class="info-icon">📞</div>
+                    <div>
+                        <div>Contact Numbers</div>
+                    </div>
+                </h3>
+                <p><strong>Main:</strong> <a href="tel:+971XXXXXXX">+971-XX-XXXXXXX</a><br>
+                <strong>Bullion Desk:</strong> <a href="tel:+971XXXXXXX">+971-XX-XXXXXXX</a></p>
+            </div>
+
+            <div class="info-card">
+                <h3>
+                    <div class="info-icon">✉️</div>
+                    <div>
+                        <div>Email</div>
+                    </div>
+                </h3>
+                <p><a href="mailto:contact@orejewellery.com">contact@orejewellery.com</a><br>
+                <a href="mailto:trading@orejewellery.com">trading@orejewellery.com</a></p>
+            </div>
+
+            <div class="info-card">
+                <h3>
+                    <div class="info-icon">⏰</div>
+                    <div>
+                        <div>Operating Hours</div>
+                    </div>
+                </h3>
+                <p><strong>Saturday – Thursday</strong><br>
+                10:00 AM – 10:00 PM<br><br>
+                <strong>Friday</strong><br>
+                4:00 PM – 10:00 PM</p>
+            </div>
+        </div>
     </section>
 
-    <footer>© 2025 ORE Jewellery – UAE</footer>
+    <section class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span class="faq-icon">Q</span>
+                    <div>What are your payment options?</div>
+                </div>
+                <p class="faq-answer">We accept cash, bank transfers, and credit/debit cards. For large transactions, multiple payment options are available.</p>
+            </div>
 
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span class="faq-icon">Q</span>
+                    <div>Do you offer custom design services?</div>
+                </div>
+                <p class="faq-answer">Yes, we specialize in bespoke jewellery design. Contact our design team to discuss your vision and bring it to life.</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span class="faq-icon">Q</span>
+                    <div>How often are prices updated?</div>
+                </div>
+                <p class="faq-answer">Live prices are updated continuously throughout trading hours. Market rates are reflected in real-time on our platform.</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span class="faq-icon">Q</span>
+                    <div>Is vault storage secure?</div>
+                </div>
+                <p class="faq-answer">Our vault facilities are insured and equipped with state-of-the-art security. Full insurance coverage is included with storage.</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span class="faq-icon">Q</span>
+                    <div>What's your buy-back policy?</div>
+                </div>
+                <p class="faq-answer">We guarantee competitive buy-back rates for all our bullion products based on current market prices at the time of transaction.</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span class="faq-icon">Q</span>
+                    <div>Can I schedule a private consultation?</div>
+                </div>
+                <p class="faq-answer">Absolutely. Contact our team to schedule a personalized consultation with our specialists regarding your specific needs.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; <span id="year"></span> ORE Jewellery. All rights reserved.</p>
+        <p class="small-text">Your trusted partner in precious metals and luxury jewellery.</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const responseDiv = document.getElementById('responseMessage');
+
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                inquiry: document.getElementById('inquiry').value,
+                message: document.getElementById('message').value
+            };
+
+            console.log('Form submitted:', formData);
+
+            responseDiv.textContent = 'Thank you for your message! We will get back to you shortly.';
+            responseDiv.className = 'response-message success';
+
+            this.reset();
+
+            setTimeout(() => {
+                responseDiv.className = 'response-message';
+            }, 5000);
+        });
+    </script>
 </body>
-
 </html>

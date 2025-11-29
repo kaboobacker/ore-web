@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ORE Jewellery Showrooms - Visit our premium locations in Dubai for gold jewellery, bullion trading, and exclusive consultations.">
+    <title>Showrooms – ORE Jewellery</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .breadcrumb {
+            padding: calc(var(--spacing-unit) * 3) 7%;
+            background: var(--neutral-100);
+            border-bottom: 1px solid var(--neutral-200);
+        }
+
+        .breadcrumb a {
+            color: var(--gold-700);
+            font-weight: 500;
+        }
+
+        .breadcrumb span {
+            color: var(--neutral-600);
+            margin: 0 calc(var(--spacing-unit) * 1);
+        }
+
+        .showrooms-hero {
+            padding: calc(var(--spacing-unit) * 12) 7% calc(var(--spacing-unit) * 8);
+            background: linear-gradient(135deg, var(--neutral-50) 0%, var(--gold-100) 100%);
+            text-align: center;
+        }
+
+        .showrooms-hero h1 {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            color: var(--neutral-900);
+        }
+
+        .showrooms-hero p {
+            font-size: 18px;
+            color: var(--neutral-600);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .showrooms-grid {
+            padding: calc(var(--spacing-unit) * 10) 7%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: calc(var(--spacing-unit) * 6);
+        }
+
+        .showroom-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--neutral-200);
+            transition: all var(--transition-smooth);
+        }
+
+        .showroom-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .showroom-image {
+            height: 300px;
+            background: linear-gradient(135deg, var(--gold-100) 0%, var(--gold-200) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .showroom-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .showroom-badge {
+            position: absolute;
+            top: calc(var(--spacing-unit) * 2);
+            left: calc(var(--spacing-unit) * 2);
+            background: var(--gold-700);
+            color: white;
+            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .showroom-content {
+            padding: calc(var(--spacing-unit) * 5);
+        }
+
+        .showroom-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--neutral-900);
+            margin-bottom: calc(var(--spacing-unit) * 1);
+        }
+
+        .showroom-location {
+            font-size: 14px;
+            color: var(--gold-700);
+            font-weight: 600;
+            margin-bottom: calc(var(--spacing-unit) * 3);
+            display: flex;
+            align-items: center;
+            gap: calc(var(--spacing-unit) * 1);
+        }
+
+        .location-icon {
+            font-size: 18px;
+        }
+
+        .showroom-description {
+            font-size: 14px;
+            color: var(--neutral-700);
+            line-height: 1.6;
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+
+        .showroom-details {
+            display: grid;
+            gap: calc(var(--spacing-unit) * 2);
+            padding-bottom: calc(var(--spacing-unit) * 3);
+            border-bottom: 1px solid var(--neutral-200);
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+
+        .detail-row {
+            display: flex;
+            gap: calc(var(--spacing-unit) * 2);
+            align-items: flex-start;
+        }
+
+        .detail-icon {
+            font-size: 20px;
+            width: 28px;
+            flex-shrink: 0;
+            text-align: center;
+            margin-top: calc(var(--spacing-unit) * 0.5);
+        }
+
+        .detail-content h4 {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--neutral-900);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: calc(var(--spacing-unit) * 0.5);
+        }
+
+        .detail-content p {
+            font-size: 13px;
+            color: var(--neutral-700);
+        }
+
+        .detail-content a {
+            color: var(--gold-700);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .detail-content a:hover {
+            text-decoration: underline;
+        }
+
+        .showroom-services {
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+
+        .services-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--neutral-900);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+        }
+
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: calc(var(--spacing-unit) * 1.5);
+        }
+
+        .service-badge {
+            background: var(--gold-100);
+            padding: calc(var(--spacing-unit) * 1) calc(var(--spacing-unit) * 1.5);
+            border-radius: 8px;
+            font-size: 12px;
+            color: var(--gold-900);
+            font-weight: 600;
+            text-align: center;
+            border: 1px solid var(--gold-300);
+        }
+
+        .showroom-cta {
+            display: grid;
+            gap: calc(var(--spacing-unit) * 1.5);
+        }
+
+        .cta-link {
+            display: block;
+            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2);
+            background: var(--gold-700);
+            color: white;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            transition: all var(--transition-base);
+        }
+
+        .cta-link:hover {
+            background: var(--gold-800);
+            transform: translateY(-2px);
+        }
+
+        .cta-link.secondary {
+            background: var(--neutral-200);
+            color: var(--neutral-900);
+        }
+
+        .cta-link.secondary:hover {
+            background: var(--neutral-300);
+        }
+
+        .services-section {
+            padding: calc(var(--spacing-unit) * 10) 7%;
+            background: var(--neutral-100);
+        }
+
+        .services-section h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 700;
+            margin-bottom: calc(var(--spacing-unit) * 6);
+            color: var(--neutral-900);
+            text-align: center;
+        }
+
+        .services-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: calc(var(--spacing-unit) * 4);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            padding: calc(var(--spacing-unit) * 4);
+            border-radius: 16px;
+            border: 1px solid var(--neutral-200);
+            text-align: center;
+            transition: all var(--transition-base);
+        }
+
+        .service-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .service-emoji {
+            font-size: 48px;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--neutral-900);
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+        }
+
+        .service-card p {
+            font-size: 14px;
+            color: var(--neutral-700);
+            line-height: 1.6;
+        }
+
+        .experience-section {
+            padding: calc(var(--spacing-unit) * 10) 7%;
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: calc(var(--spacing-unit) * 4);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .experience-card {
+            background: white;
+            padding: calc(var(--spacing-unit) * 5);
+            border-radius: 16px;
+            border: 1px solid var(--neutral-200);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+        }
+
+        .experience-number {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--gold-700);
+            margin-bottom: calc(var(--spacing-unit) * 1);
+        }
+
+        .experience-label {
+            font-size: 14px;
+            color: var(--neutral-700);
+            font-weight: 600;
+        }
+
+        @media (max-width: 1024px) {
+            .showrooms-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .showrooms-hero {
+                padding: calc(var(--spacing-unit) * 8) 5%;
+            }
+
+            .showrooms-grid {
+                padding: calc(var(--spacing-unit) * 8) 5%;
+                gap: calc(var(--spacing-unit) * 4);
+            }
+
+            .services-section {
+                padding: calc(var(--spacing-unit) * 8) 5%;
+            }
+
+            .experience-section {
+                padding: calc(var(--spacing-unit) * 8) 5%;
+            }
+
+            .services-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="top-bar">
+        <div class="logo">ORE<span>Jewellery</span></div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="collections.html">Collections</a>
+            <a href="bullion.html">Bullion</a>
+            <a href="contact.html">Contact</a>
+            <a href="showrooms.html">Showrooms</a>
+        </nav>
+    </header>
+
+    <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>Showrooms</span>
+    </div>
+
+    <section class="showrooms-hero">
+        <h1>Visit Our Premium Showrooms</h1>
+        <p>Experience the ORE difference firsthand. Our state-of-the-art showrooms showcase our exclusive collections and offer expert consultations.</p>
+    </section>
+
+    <section class="showrooms-grid">
+        <div class="showroom-card">
+            <div class="showroom-image">
+                <span class="showroom-badge">MAIN SHOWROOM</span>
+                <img src="https://images.pexels.com/photos/1457801/pexels-photo-1457801.jpeg?auto=compress&cs=tinysrgb&w=800" alt="ORE Main Showroom">
+            </div>
+            <div class="showroom-content">
+                <h3 class="showroom-name">Downtown Dubai</h3>
+                <p class="showroom-location">
+                    <span class="location-icon">📍</span>
+                    Premium Gold & Bullion Centre
+                </p>
+                <p class="showroom-description">Our flagship showroom featuring the complete collection of heritage bridal sets, contemporary jewellery, and investment-grade bullion.</p>
+
+                <div class="showroom-details">
+                    <div class="detail-row">
+                        <div class="detail-icon">📞</div>
+                        <div class="detail-content">
+                            <h4>Phone</h4>
+                            <p><a href="tel:+97145XXXXXX">+971-45-XXXXXX</a></p>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-icon">⏰</div>
+                        <div class="detail-content">
+                            <h4>Hours</h4>
+                            <p>Sat-Thu: 10 AM - 10 PM<br>Fri: 4 PM - 10 PM</p>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-icon">🅿️</div>
+                        <div class="detail-content">
+                            <h4>Parking</h4>
+                            <p>Complimentary valet parking available</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="showroom-services">
+                    <h4 class="services-title">Services Available</h4>
+                    <div class="services-list">
+                        <div class="service-badge">Collections</div>
+                        <div class="service-badge">Bullion Trading</div>
+                        <div class="service-badge">Custom Design</div>
+                        <div class="service-badge">Consultations</div>
+                    </div>
+                </div>
+
+                <div class="showroom-cta">
+                    <a href="contact.html" class="cta-link">Schedule Visit</a>
+                    <a href="contact.html" class="cta-link secondary">Get Directions</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="showroom-card">
+            <div class="showroom-image">
+                <span class="showroom-badge">MALL SHOWROOM</span>
+                <img src="https://images.pexels.com/photos/1191530/pexels-photo-1191530.jpeg?auto=compress&cs=tinysrgb&w=800" alt="ORE Mall Showroom">
+            </div>
+            <div class="showroom-content">
+                <h3 class="showroom-name">The Galleria</h3>
+                <p class="showroom-location">
+                    <span class="location-icon">📍</span>
+                    Luxury Jewellery Boutique
+                </p>
+                <p class="showroom-description">Elegant boutique showcasing everyday wear collections and exclusive statement pieces for the discerning customer.</p>
+
+                <div class="showroom-details">
+                    <div class="detail-row">
+                        <div class="detail-icon">📞</div>
+                        <div class="detail-content">
+                            <h4>Phone</h4>
+                            <p><a href="tel:+97146XXXXXX">+971-46-XXXXXX</a></p>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-icon">⏰</div>
+                        <div class="detail-content">
+                            <h4>Hours</h4>
+                            <p>Daily: 10 AM - 10 PM</p>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-icon">🛍️</div>
+                        <div class="detail-content">
+                            <h4>Mall Access</h4>
+                            <p>Easy access via main mall entrance</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="showroom-services">
+                    <h4 class="services-title">Services Available</h4>
+                    <div class="services-list">
+                        <div class="service-badge">Retail Sales</div>
+                        <div class="service-badge">Repairs</div>
+                        <div class="service-badge">Customization</div>
+                        <div class="service-badge">Sizing</div>
+                    </div>
+                </div>
+
+                <div class="showroom-cta">
+                    <a href="contact.html" class="cta-link">Schedule Visit</a>
+                    <a href="contact.html" class="cta-link secondary">Get Directions</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="showroom-card">
+            <div class="showroom-image">
+                <span class="showroom-badge">TRADING DESK</span>
+                <img src="https://images.pexels.com/photos/2101137/pexels-photo-2101137.jpeg?auto=compress&cs=tinysrgb&w=800" alt="ORE Trading Desk">
+            </div>
+            <div class="showroom-content">
+                <h3 class="showroom-name">Bullion Trading Centre</h3>
+                <p class="showroom-location">
+                    <span class="location-icon">📍</span>
+                    Investment Precious Metals
+                </p>
+                <p class="showroom-description">Dedicated bullion trading facility with vault storage, secure transactions, and expert portfolio consultation services.</p>
+
+                <div class="showroom-details">
+                    <div class="detail-row">
+                        <div class="detail-icon">📞</div>
+                        <div class="detail-content">
+                            <h4>Trading Desk</h4>
+                            <p><a href="tel:+97143XXXXXX">+971-43-XXXXXX</a></p>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-icon">⏰</div>
+                        <div class="detail-content">
+                            <h4>Hours</h4>
+                            <p>Sat-Thu: 9 AM - 6 PM<br>By appointment on Fri</p>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-icon">🔒</div>
+                        <div class="detail-content">
+                            <h4>Security</h4>
+                            <p>State-of-the-art vault & insurance</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="showroom-services">
+                    <h4 class="services-title">Services Available</h4>
+                    <div class="services-list">
+                        <div class="service-badge">Buy/Sell</div>
+                        <div class="service-badge">Vault Storage</div>
+                        <div class="service-badge">Market Analysis</div>
+                        <div class="service-badge">Insurance</div>
+                    </div>
+                </div>
+
+                <div class="showroom-cta">
+                    <a href="contact.html" class="cta-link">Schedule Consultation</a>
+                    <a href="contact.html" class="cta-link secondary">Get Directions</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section">
+        <h2>In-Store Services</h2>
+        <div class="services-showcase">
+            <div class="service-card">
+                <span class="service-emoji">💎</span>
+                <h3>Expert Consultations</h3>
+                <p>Personalized guidance from our certified specialists for collections and bullion portfolios.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-emoji">🔧</span>
+                <h3>Repair & Maintenance</h3>
+                <p>Professional cleaning, maintenance, and restoration services for all jewellery pieces.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-emoji">✨</span>
+                <h3>Custom Design</h3>
+                <p>Bespoke design services to create your dream pieces with expert craftsmanship.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-emoji">📏</span>
+                <h3>Sizing & Resizing</h3>
+                <p>Complimentary sizing adjustments and resizing services for perfect fit and comfort.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-emoji">📊</span>
+                <h3>Market Updates</h3>
+                <p>Real-time precious metal pricing and market analysis at all locations.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-emoji">🎁</span>
+                <h3>Gift Wrapping</h3>
+                <p>Complimentary premium gift wrapping and presentation services for all purchases.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="experience-section">
+        <h2 style="font-size: clamp(28px, 4vw, 42px); font-weight: 700; margin-bottom: calc(var(--spacing-unit) * 6); color: var(--neutral-900); text-align: center;">Why Shop at ORE</h2>
+        <div class="experience-grid">
+            <div class="experience-card">
+                <div class="experience-number">25+</div>
+                <p class="experience-label">Years of Excellence</p>
+            </div>
+            <div class="experience-card">
+                <div class="experience-number">500+</div>
+                <p class="experience-label">Unique Designs</p>
+            </div>
+            <div class="experience-card">
+                <div class="experience-number">10k+</div>
+                <p class="experience-label">Happy Customers</p>
+            </div>
+            <div class="experience-card">
+                <div class="experience-number">100%</div>
+                <p class="experience-label">Authentic Certified</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; <span id="year"></span> ORE Jewellery. All rights reserved.</p>
+        <p class="small-text">Premium jewellery and bullion trading. Visit us today for an exceptional experience.</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ORE Jewellery Collections - Handcrafted gold jewellery featuring bridal sets, everyday wear, and signature statement pieces.">
+    <title>Collections – ORE Jewellery</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .breadcrumb {
+            padding: calc(var(--spacing-unit) * 3) 7%;
+            background: var(--neutral-100);
+            border-bottom: 1px solid var(--neutral-200);
+        }
+
+        .breadcrumb a {
+            color: var(--gold-700);
+            font-weight: 500;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb span {
+            color: var(--neutral-600);
+            margin: 0 calc(var(--spacing-unit) * 1);
+        }
+
+        .collection-hero {
+            padding: calc(var(--spacing-unit) * 12) 7% calc(var(--spacing-unit) * 8);
+            background: linear-gradient(135deg, var(--neutral-50) 0%, var(--gold-100) 100%);
+            text-align: center;
+        }
+
+        .collection-hero h1 {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            color: var(--neutral-900);
+        }
+
+        .collection-hero p {
+            font-size: 18px;
+            color: var(--neutral-600);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .filter-section {
+            padding: calc(var(--spacing-unit) * 8) 7%;
+            background: var(--neutral-100);
+            display: flex;
+            gap: calc(var(--spacing-unit) * 2);
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-label {
+            font-weight: 600;
+            color: var(--neutral-700);
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        .filter-btn {
+            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
+            border-radius: 20px;
+            border: 1.5px solid var(--neutral-300);
+            background: white;
+            color: var(--neutral-700);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--gold-600);
+            color: var(--gold-700);
+            background: var(--gold-100);
+        }
+
+        .filter-btn.active {
+            background: var(--gold-700);
+            color: white;
+            border-color: var(--gold-700);
+        }
+
+        .collections-grid {
+            padding: calc(var(--spacing-unit) * 10) 7%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: calc(var(--spacing-unit) * 5);
+        }
+
+        .collection-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--neutral-200);
+            transition: all var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .collection-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .collection-image {
+            position: relative;
+            overflow: hidden;
+            height: 320px;
+        }
+
+        .collection-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-smooth);
+        }
+
+        .collection-card:hover .collection-image img {
+            transform: scale(1.08);
+        }
+
+        .collection-badge {
+            position: absolute;
+            top: calc(var(--spacing-unit) * 2);
+            right: calc(var(--spacing-unit) * 2);
+            background: var(--gold-700);
+            color: white;
+            padding: calc(var(--spacing-unit) * 1) calc(var(--spacing-unit) * 2);
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .collection-content {
+            padding: calc(var(--spacing-unit) * 4);
+        }
+
+        .collection-content h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--neutral-900);
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+
+        .collection-content p {
+            font-size: 15px;
+            color: var(--neutral-700);
+            line-height: 1.6;
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+
+        .collection-specs {
+            display: grid;
+            gap: calc(var(--spacing-unit) * 1.5);
+            margin-bottom: calc(var(--spacing-unit) * 3);
+            padding-bottom: calc(var(--spacing-unit) * 3);
+            border-bottom: 1px solid var(--neutral-200);
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .spec-label {
+            color: var(--neutral-600);
+            font-weight: 500;
+        }
+
+        .spec-value {
+            color: var(--gold-700);
+            font-weight: 700;
+        }
+
+        .collection-cta {
+            display: inline-block;
+            padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 3);
+            background: var(--gold-700);
+            color: white;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all var(--transition-base);
+        }
+
+        .collection-cta:hover {
+            background: var(--gold-800);
+            transform: translateY(-2px);
+        }
+
+        .details-section {
+            padding: calc(var(--spacing-unit) * 10) 7%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .details-section h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 700;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            color: var(--neutral-900);
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: calc(var(--spacing-unit) * 4);
+            margin-top: calc(var(--spacing-unit) * 4);
+        }
+
+        .detail-card {
+            padding: calc(var(--spacing-unit) * 4);
+            background: var(--gold-100);
+            border-radius: 16px;
+            border: 1px solid var(--gold-300);
+        }
+
+        .detail-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gold-900);
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+        }
+
+        .detail-card p {
+            font-size: 14px;
+            color: var(--neutral-700);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .filter-section {
+                padding: calc(var(--spacing-unit) * 6) 5%;
+            }
+
+            .collections-grid {
+                padding: calc(var(--spacing-unit) * 6) 5%;
+                gap: calc(var(--spacing-unit) * 3);
+            }
+
+            .collection-image {
+                height: 240px;
+            }
+
+            .details-grid {
+                gap: calc(var(--spacing-unit) * 3);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="top-bar">
+        <div class="logo">ORE<span>Jewellery</span></div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="collections.html">Collections</a>
+            <a href="bullion.html">Bullion</a>
+            <a href="contact.html">Contact</a>
+            <a href="showrooms.html">Showrooms</a>
+        </nav>
+    </header>
+
+    <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>Collections</span>
+    </div>
+
+    <section class="collection-hero">
+        <h1>Signature Jewellery Collections</h1>
+        <p>Each piece is meticulously handcrafted to celebrate life's most precious moments. From timeless bridal sets to sophisticated everyday elegance.</p>
+    </section>
+
+    <section class="filter-section">
+        <span class="filter-label">Explore by Collection</span>
+        <button class="filter-btn active" onclick="filterCollection('all')">All Collections</button>
+        <button class="filter-btn" onclick="filterCollection('bridal')">Bridal</button>
+        <button class="filter-btn" onclick="filterCollection('everyday')">Everyday Wear</button>
+        <button class="filter-btn" onclick="filterCollection('statement')">Statement Pieces</button>
+    </section>
+
+    <section class="collections-grid">
+        <div class="collection-card" data-collection="bridal">
+            <div class="collection-image">
+                <img src="https://images.pexels.com/photos/1457801/pexels-photo-1457801.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Heritage bridal collection">
+                <span class="collection-badge">Bridal</span>
+            </div>
+            <div class="collection-content">
+                <h3>Heritage Bridal</h3>
+                <p>Timeless bridal ensembles that honor tradition while embracing contemporary elegance. Perfect for your special day.</p>
+                <div class="collection-specs">
+                    <div class="spec-item">
+                        <span class="spec-label">Gold Purity</span>
+                        <span class="spec-value">22K</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Available Designs</span>
+                        <span class="spec-value">12+</span>
+                    </div>
+                </div>
+                <a href="contact.html" class="collection-cta">Enquire Now</a>
+            </div>
+        </div>
+
+        <div class="collection-card" data-collection="bridal">
+            <div class="collection-image">
+                <img src="https://images.pexels.com/photos/1191530/pexels-photo-1191530.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Royal bridal treasures">
+                <span class="collection-badge">Bridal</span>
+            </div>
+            <div class="collection-content">
+                <h3>Royal Treasures</h3>
+                <p>Opulent bridal collections featuring intricate detailing and premium gemstone settings for the discerning bride.</p>
+                <div class="collection-specs">
+                    <div class="spec-item">
+                        <span class="spec-label">Gold Purity</span>
+                        <span class="spec-value">24K</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Available Designs</span>
+                        <span class="spec-value">8+</span>
+                    </div>
+                </div>
+                <a href="contact.html" class="collection-cta">Enquire Now</a>
+            </div>
+        </div>
+
+        <div class="collection-card" data-collection="everyday">
+            <div class="collection-image">
+                <img src="https://images.pexels.com/photos/1038716/pexels-photo-1038716.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Daily elegance collection">
+                <span class="collection-badge">Everyday</span>
+            </div>
+            <div class="collection-content">
+                <h3>Daily Elegance</h3>
+                <p>Refined designs crafted for comfortable daily wear. Lightweight yet durable pieces that never go out of style.</p>
+                <div class="collection-specs">
+                    <div class="spec-item">
+                        <span class="spec-label">Gold Purity</span>
+                        <span class="spec-value">18K</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Available Designs</span>
+                        <span class="spec-value">20+</span>
+                    </div>
+                </div>
+                <a href="contact.html" class="collection-cta">View Details</a>
+            </div>
+        </div>
+
+        <div class="collection-card" data-collection="everyday">
+            <div class="collection-image">
+                <img src="https://images.pexels.com/photos/1191802/pexels-photo-1191802.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Modern classics collection">
+                <span class="collection-badge">Everyday</span>
+            </div>
+            <div class="collection-content">
+                <h3>Modern Classics</h3>
+                <p>Contemporary interpretations of timeless designs. Perfect for those who appreciate subtle sophistication.</p>
+                <div class="collection-specs">
+                    <div class="spec-item">
+                        <span class="spec-label">Gold Purity</span>
+                        <span class="spec-value">18K / 22K</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Available Designs</span>
+                        <span class="spec-value">15+</span>
+                    </div>
+                </div>
+                <a href="contact.html" class="collection-cta">View Details</a>
+            </div>
+        </div>
+
+        <div class="collection-card" data-collection="statement">
+            <div class="collection-image">
+                <img src="https://images.pexels.com/photos/2101137/pexels-photo-2101137.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Celebrity statement pieces">
+                <span class="collection-badge">Statement</span>
+            </div>
+            <div class="collection-content">
+                <h3>Celebrity Statement</h3>
+                <p>Bold, distinguished designs that command attention. Exclusive pieces for gala events and red carpet moments.</p>
+                <div class="collection-specs">
+                    <div class="spec-item">
+                        <span class="spec-label">Gold Purity</span>
+                        <span class="spec-value">24K</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Available Designs</span>
+                        <span class="spec-value">6+</span>
+                    </div>
+                </div>
+                <a href="contact.html" class="collection-cta">Enquire Now</a>
+            </div>
+        </div>
+
+        <div class="collection-card" data-collection="statement">
+            <div class="collection-image">
+                <img src="https://images.pexels.com/photos/1151802/pexels-photo-1151802.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Couture collection">
+                <span class="collection-badge">Statement</span>
+            </div>
+            <div class="collection-content">
+                <h3>Couture Collection</h3>
+                <p>Bespoke luxury pieces created exclusively for discerning clientele. Custom designs available upon request.</p>
+                <div class="collection-specs">
+                    <div class="spec-item">
+                        <span class="spec-label">Gold Purity</span>
+                        <span class="spec-value">24K Custom</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Available Designs</span>
+                        <span class="spec-value">Custom</span>
+                    </div>
+                </div>
+                <a href="contact.html" class="collection-cta">Request Custom</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="details-section">
+            <h2>Why Choose ORE Collections</h2>
+            <div class="details-grid">
+                <div class="detail-card">
+                    <h3>Master Craftsmanship</h3>
+                    <p>Each piece is hand-finished by our award-winning artisans with decades of combined experience and uncompromising attention to detail.</p>
+                </div>
+                <div class="detail-card">
+                    <h3>Premium Materials</h3>
+                    <p>We source the finest gold and gemstones, with full certification and transparency on all materials used in our designs.</p>
+                </div>
+                <div class="detail-card">
+                    <h3>Lifetime Value</h3>
+                    <p>Our collections are designed to last generations. We offer complimentary cleaning, maintenance, and resizing services for life.</p>
+                </div>
+                <div class="detail-card">
+                    <h3>Investment Quality</h3>
+                    <p>Every piece retains its value and can be exchanged or bought back at competitive rates based on current market prices.</p>
+                </div>
+                <div class="detail-card">
+                    <h3>Personalization</h3>
+                    <p>Customize any design with engravings, alternative metals, or bespoke modifications to create your perfect piece.</p>
+                </div>
+                <div class="detail-card">
+                    <h3>Certification</h3>
+                    <p>All pieces come with authenticated certificates of authenticity, weight, purity, and detailed documentation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; <span id="year"></span> ORE Jewellery. All rights reserved.</p>
+        <p class="small-text">Handcrafted excellence since established. Certified quality, guaranteed authenticity.</p>
+    </footer>
+
+    <script>
+        function filterCollection(type) {
+            const cards = document.querySelectorAll('.collection-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (type === 'all' || card.dataset.collection === type) {
+                    card.style.display = 'block';
+                    setTimeout(() => card.style.opacity = '1', 0);
+                } else {
+                    card.style.opacity = '0';
+                    setTimeout(() => card.style.display = 'none', 300);
+                }
+            });
+        }
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

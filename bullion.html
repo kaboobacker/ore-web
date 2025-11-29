@@ -1,56 +1,614 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Bullion – ORE UAE</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ORE Bullion Trading - Certified investment-grade gold and silver bullion with real-time pricing and secure trading solutions.">
+    <title>Investment Bullion – ORE Jewellery</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .breadcrumb {
+            padding: calc(var(--spacing-unit) * 3) 7%;
+            background: var(--neutral-100);
+            border-bottom: 1px solid var(--neutral-200);
+        }
+
+        .breadcrumb a {
+            color: var(--gold-700);
+            font-weight: 500;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb span {
+            color: var(--neutral-600);
+            margin: 0 calc(var(--spacing-unit) * 1);
+        }
+
+        .bullion-hero {
+            padding: calc(var(--spacing-unit) * 12) 7% calc(var(--spacing-unit) * 8);
+            background: linear-gradient(135deg, var(--neutral-50) 0%, var(--gold-100) 100%);
+        }
+
+        .hero-content-flex {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: calc(var(--spacing-unit) * 8);
+            align-items: center;
+        }
+
+        .bullion-hero h1 {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            margin-bottom: calc(var(--spacing-unit) * 3);
+            color: var(--neutral-900);
+        }
+
+        .bullion-hero p {
+            font-size: 16px;
+            color: var(--neutral-700);
+            line-height: 1.7;
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+
+        .bullion-benefits {
+            display: grid;
+            gap: calc(var(--spacing-unit) * 2);
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: calc(var(--spacing-unit) * 2);
+            align-items: flex-start;
+        }
+
+        .benefit-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--gold-600);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            flex-shrink: 0;
+            font-size: 18px;
+        }
+
+        .benefit-text h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--neutral-900);
+            margin-bottom: calc(var(--spacing-unit) * 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .benefit-text p {
+            font-size: 13px;
+            color: var(--neutral-600);
+        }
+
+        .hero-image {
+            background: white;
+            padding: calc(var(--spacing-unit) * 3);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--neutral-200);
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 16px;
+        }
+
+        .products-section {
+            padding: calc(var(--spacing-unit) * 10) 7%;
+        }
+
+        .products-section h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 700;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            color: var(--neutral-900);
+        }
+
+        .products-subtitle {
+            font-size: 16px;
+            color: var(--neutral-600);
+            margin-bottom: calc(var(--spacing-unit) * 6);
+            max-width: 600px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: calc(var(--spacing-unit) * 5);
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--neutral-200);
+            transition: all var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .product-image {
+            height: 280px;
+            background: linear-gradient(135deg, var(--gold-100) 0%, var(--gold-200) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: calc(var(--spacing-unit) * 2);
+            right: calc(var(--spacing-unit) * 2);
+            background: var(--gold-700);
+            color: white;
+            padding: calc(var(--spacing-unit) * 1) calc(var(--spacing-unit) * 2.5);
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .product-content {
+            padding: calc(var(--spacing-unit) * 4);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--neutral-900);
+            margin-bottom: calc(var(--spacing-unit) * 1);
+        }
+
+        .product-description {
+            font-size: 14px;
+            color: var(--neutral-600);
+            margin-bottom: calc(var(--spacing-unit) * 3);
+            flex-grow: 1;
+        }
+
+        .product-specs {
+            display: grid;
+            gap: calc(var(--spacing-unit) * 1.5);
+            margin-bottom: calc(var(--spacing-unit) * 3);
+            padding-bottom: calc(var(--spacing-unit) * 3);
+            border-bottom: 1px solid var(--neutral-200);
+        }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+        }
+
+        .spec-label {
+            color: var(--neutral-600);
+            font-weight: 500;
+        }
+
+        .spec-value {
+            color: var(--gold-700);
+            font-weight: 700;
+        }
+
+        .product-cta {
+            display: inline-block;
+            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2.5);
+            background: var(--gold-700);
+            color: white;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            transition: all var(--transition-base);
+        }
+
+        .product-cta:hover {
+            background: var(--gold-800);
+            transform: translateY(-2px);
+        }
+
+        .features-section {
+            padding: calc(var(--spacing-unit) * 10) 7%;
+            background: var(--neutral-100);
+        }
+
+        .features-section h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 700;
+            margin-bottom: calc(var(--spacing-unit) * 6);
+            color: var(--neutral-900);
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: calc(var(--spacing-unit) * 4);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: white;
+            padding: calc(var(--spacing-unit) * 5);
+            border-radius: 16px;
+            border: 1px solid var(--neutral-200);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+        }
+
+        .feature-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--neutral-900);
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: var(--neutral-600);
+            line-height: 1.6;
+        }
+
+        .pricing-section {
+            padding: calc(var(--spacing-unit) * 10) 7%;
+        }
+
+        .pricing-section h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 700;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            color: var(--neutral-900);
+        }
+
+        .pricing-subtitle {
+            font-size: 16px;
+            color: var(--neutral-600);
+            margin-bottom: calc(var(--spacing-unit) * 6);
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: calc(var(--spacing-unit) * 5);
+            border: 2px solid var(--neutral-300);
+            max-width: 500px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--gold-600);
+            background: linear-gradient(135deg, var(--gold-100) 0%, white 100%);
+            transform: scale(1.05);
+        }
+
+        .pricing-header {
+            margin-bottom: calc(var(--spacing-unit) * 4);
+        }
+
+        .pricing-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--neutral-900);
+            margin-bottom: calc(var(--spacing-unit) * 1);
+        }
+
+        .pricing-desc {
+            font-size: 14px;
+            color: var(--neutral-600);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: calc(var(--spacing-unit) * 4);
+        }
+
+        .pricing-features li {
+            padding: calc(var(--spacing-unit) * 1.5) 0;
+            border-bottom: 1px solid var(--neutral-200);
+            font-size: 14px;
+            color: var(--neutral-700);
+        }
+
+        .pricing-features li:before {
+            content: '✓';
+            color: var(--success-600);
+            font-weight: 700;
+            margin-right: calc(var(--spacing-unit) * 1);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 4);
+            background: var(--gold-700);
+            color: white;
+            border-radius: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+            transition: all var(--transition-base);
+        }
+
+        .cta-button:hover {
+            background: var(--gold-800);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 1024px) {
+            .hero-content-flex {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .bullion-hero {
+                padding: calc(var(--spacing-unit) * 8) 5%;
+            }
+
+            .products-section {
+                padding: calc(var(--spacing-unit) * 8) 5%;
+            }
+
+            .features-section {
+                padding: calc(var(--spacing-unit) * 8) 5%;
+            }
+
+            .pricing-section {
+                padding: calc(var(--spacing-unit) * 8) 5%;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+        }
+    </style>
 </head>
-
 <body>
-
-    <header>
-        <div class="logo">ORE</div>
+    <header class="top-bar">
+        <div class="logo">ORE<span>Jewellery</span></div>
         <nav>
             <a href="index.html">Home</a>
+            <a href="collections.html">Collections</a>
             <a href="bullion.html">Bullion</a>
-            <a href="jewellery.html">Jewellery</a>
-            <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
+            <a href="showrooms.html">Showrooms</a>
         </nav>
     </header>
 
-    <div class="banner" style="background-image:url('images/gold-bars.jpg');"></div>
+    <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>Investment Bullion</span>
+    </div>
 
-    <section class="section">
-        <h2>Live Bullion Rates</h2>
-
-        <div class="rate-table">
-            <div class="rate-header">Gold & Silver Rates</div>
-
-            <div class="rate-row">
-                <div class="rate-label">24K</div>
-                <div class="rate-value"><span class="p24"></span></div>
+    <section class="bullion-hero">
+        <div class="hero-content-flex">
+            <div>
+                <h1>Secure Your Financial Future with Investment-Grade Bullion</h1>
+                <p>ORE provides institutional-grade precious metal products backed by international certification and transparent market pricing. Whether you're a seasoned investor or building your first position, we deliver unmatched security and expertise.</p>
+                <div class="bullion-benefits">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">✓</div>
+                        <div class="benefit-text">
+                            <h4>Internationally Certified</h4>
+                            <p>All products verified and authenticated by leading assayers</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">✓</div>
+                        <div class="benefit-text">
+                            <h4>Real-Time Pricing</h4>
+                            <p>Transparent rates synchronized with international markets</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">✓</div>
+                        <div class="benefit-text">
+                            <h4>Secure Trading</h4>
+                            <p>Vault storage and insurance options available</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="rate-row">
-                <div class="rate-label">22K</div>
-                <div class="rate-value"><span class="p22"></span></div>
-            </div>
-            <div class="rate-row">
-                <div class="rate-label">18K</div>
-                <div class="rate-value"><span class="p18"></span></div>
-            </div>
-            <div class="rate-row">
-                <div class="rate-label">Silver</div>
-                <div class="rate-value"><span class="pSilver"></span></div>
+            <div class="hero-image">
+                <img src="https://images.pexels.com/photos/2101137/pexels-photo-2101137.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Gold bullion bars">
             </div>
         </div>
     </section>
 
+    <section class="products-section">
+        <h2>Our Bullion Products</h2>
+        <p class="products-subtitle">Explore our comprehensive range of certified bullion products, each selected for quality, liquidity, and investment potential.</p>
 
-    <footer>© 2025 ORE Jewellery – UAE</footer>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-badge">Gold Bar</span>
+                    <img src="https://images.pexels.com/photos/2101137/pexels-photo-2101137.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Gold bars">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-name">24K Gold Bars</h3>
+                    <p class="product-description">Pure investment-grade gold available in multiple denominations from 1g to 1kg.</p>
+                    <div class="product-specs">
+                        <div class="spec-row">
+                            <span class="spec-label">Purity</span>
+                            <span class="spec-value">99.99%</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Available Sizes</span>
+                            <span class="spec-value">1g - 1kg</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Certification</span>
+                            <span class="spec-value">ISO</span>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="product-cta">Request Quote</a>
+                </div>
+            </div>
 
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-badge">Silver Coins</span>
+                    <img src="https://images.pexels.com/photos/1191531/pexels-photo-1191531.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Silver coins">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-name">999 Fine Silver</h3>
+                    <p class="product-description">Globally recognized silver coins and bars with full provenance documentation.</p>
+                    <div class="product-specs">
+                        <div class="spec-row">
+                            <span class="spec-label">Purity</span>
+                            <span class="spec-value">99.9%</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Available Sizes</span>
+                            <span class="spec-value">1oz - 1kg</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Certification</span>
+                            <span class="spec-value">ISO</span>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="product-cta">Request Quote</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-badge">Mixed Metals</span>
+                    <img src="https://images.pexels.com/photos/1151802/pexels-photo-1151802.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Precious metals">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-name">Precious Metal Mix</h3>
+                    <p class="product-description">Diversified bullion portfolios combining gold, silver, and platinum options.</p>
+                    <div class="product-specs">
+                        <div class="spec-row">
+                            <span class="spec-label">Metals</span>
+                            <span class="spec-value">Multi</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Purity</span>
+                            <span class="spec-value">99.9%+</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Certification</span>
+                            <span class="spec-value">Full</span>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="product-cta">Portfolio Review</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <h2>Why Choose ORE for Bullion Trading</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🔒</span>
+                <h3>Vault Security</h3>
+                <p>State-of-the-art vault storage with full insurance coverage and secure transportation services available.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📊</span>
+                <h3>Market Intelligence</h3>
+                <p>Daily market updates and expert analysis to inform your investment decisions with confidence.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">💼</span>
+                <h3>Portfolio Consultation</h3>
+                <p>Dedicated specialists provide personalized guidance on bullion allocation and wealth preservation strategies.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🔄</span>
+                <h3>Guaranteed Buy-Back</h3>
+                <p>Competitive buy-back programs ensure liquidity and fair market value for your precious metals.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📜</span>
+                <h3>Full Documentation</h3>
+                <p>Comprehensive certification, assay reports, and provenance documentation for every transaction.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🌍</span>
+                <h3>Global Liquidity</h3>
+                <p>Your bullion is recognized worldwide and can be liquidated in any major international market.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-section">
+        <h2>Bullion Trading Plans</h2>
+        <p class="pricing-subtitle">Flexible options tailored to your investment goals and portfolio size.</p>
+
+        <div class="pricing-card featured">
+            <div class="pricing-header">
+                <h3 class="pricing-title">Premium Investor</h3>
+                <p class="pricing-desc">For serious collectors and institutional investors</p>
+            </div>
+            <ul class="pricing-features">
+                <li>Dedicated account manager</li>
+                <li>Priority vault access</li>
+                <li>Bulk discounts available</li>
+                <li>Bi-weekly market reports</li>
+                <li>Insurance included</li>
+                <li>Free consultations</li>
+            </ul>
+            <a href="contact.html" class="cta-button">Get Started</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; <span id="year"></span> ORE Jewellery. All rights reserved.</p>
+        <p class="small-text">All bullion prices subject to real-time market conditions. Terms and conditions apply.</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
-
 </html>
