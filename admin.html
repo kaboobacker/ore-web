@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORE – Price Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f6f2e8;
+            padding: 40px;
+        }
+        .card {
+            background: white;
+            padding: 25px;
+            width: 380px;
+            margin: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background: #d4a017;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #b98b13;
+        }
+        #logoutBtn {
+            background: #555;
+        }
+        #status {
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: center;
+            min-height: 20px;
+        }
+        h2, h3 {
+            margin-top: 0;
+            text-align: center;
+        }
+        .current-line {
+            margin-top: 8px;
+            font-size: 14px;
+        }
+        small {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>ORE Admin Login</h2>
+
+        <!-- LOGIN AREA -->
+        <div id="loginSection">
+            <input type="email" id="email" placeholder="Admin Email">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="login()">Login</button>
+            <small>Use the email & password you created in Firebase Authentication.</small>
+        </div>
+
+        <!-- ADMIN AREA -->
+        <div id="adminSection" style="display:none;">
+            <h3>Update Live Prices (AED / gram)</h3>
+
+            <div class="current-line">
+                24K Gold: <b id="p24">Loading...</b>
+            </div>
+            <input type="number" id="price24" placeholder="New 24K Price (AED)">
+
+            <div class="current-line">
+                22K Gold: <b id="p22">Loading...</b>
+            </div>
+            <input type="number" id="price22" placeholder="New 22K Price (AED)">
+
+            <div class="current-line">
+                18K Gold: <b id="p18">Loading...</b>
+            </div>
+            <input type="number" id="price18" placeholder="New 18K Price (AED)">
+
+            <div class="current-line">
+                Silver (999): <b id="pSilver">Loading...</b>
+            </div>
+            <input type="number" id="priceSilver" placeholder="New Silver Price (AED)">
+
+            <button onclick="updatePrice()">Save Prices</button>
+            <button id="logoutBtn" onclick="logout()">Logout</button>
+        </div>
+
+        <div id="status"></div>
+    </div>
+
+    <!-- Firebase SDK (Modular) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+        import {
+            getAuth,
+            signInWithEmailAndPassword,
+            signOut,
+            onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+        import {
+            getFirestore,
+            doc,
+            getDoc,
+            setDoc
+        } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+
+        // SAME CONFIG AS YOUR MAIN WEBSITE
+        const firebaseConfig = {
+            apiKey: "AIzaSyAhrwhvGbPd96wJk1tlA_PTORngP0SdqW0",
+            authDomain: "gold-live-price-c60cb.firebaseapp.com",
+            projectId: "gold-live-price-c60cb",
+            storageBucket: "gold-live-price-c60cb.firebasestorage.app",
+            messagingSenderId: "288803626436",
+            appId: "1:288803626436:web:5296a37e04fe37a501d891",
+            measurementId: "G-ZE2SC7Y860"
+        };
+
+        // INIT FIREBASE
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const loginSection = document.getElementById("loginSection");
+        const adminSection = document.getElementById("adminSection");
+        const statusBox = document.getElementById("status");
+
+        // LOAD PRICES FROM FIRESTORE
+        async function loadPrices() {
+            try {
+                const ref = doc(db, "settings", "gold");
+                const snap = await getDoc(ref);
+
+                if (snap.exists()) {
+                    const data = snap.data();
+                    document.getElementById("p24").innerText = data.gold24 ?? "-";
+                    document.getElementById("p22").innerText = data.gold22 ?? "-";
+                    document.getElementById("p18").innerText = data.gold18 ?? "-";
+                    document.getElementById("pSilver").innerText = data.silver ?? "-";
+                } else {
+                    // If doc does not exist yet, create with zero values
+                    await setDoc(ref, {
+                        gold24: 0,
+                        gold22: 0,
+                        gold18: 0,
+                        silver: 0
+                    });
+                    document.getElementById("p24").innerText = "0";
+                    document.getElementById("p22").innerText = "0";
+                    document.getElementById("p18").innerText = "0";
+                    document.getElementById("pSilver").innerText = "0";
+                }
+            } catch (err) {
+                console.error(err);
+                statusBox.innerHTML = "Error loading prices: " + err.message;
+            }
+        }
+
+        // LOGIN
+        async function login() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            if (!email || !password) {
+                statusBox.innerHTML = "Enter email and password.";
+                return;
+            }
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                statusBox.innerHTML = "Logged in!";
+            } catch (err) {
+                statusBox.innerHTML = err.message;
+            }
+        }
+
+        // UPDATE PRICES
+        async function updatePrice() {
+            try {
+                const ref = doc(db, "settings", "gold");
+                const snap = await getDoc(ref);
+                const current = snap.exists() ? snap.data() : {};
+
+                const val24 = document.getElementById("price24").value;
+                const val22 = document.getElementById("price22").value;
+                const val18 = document.getElementById("price18").value;
+                const valSilver = document.getElementById("priceSilver").value;
+
+                const newData = {
+                    gold24: val24 ? Number(val24) : (current.gold24 ?? 0),
+                    gold22: val22 ? Number(val22) : (current.gold22 ?? 0),
+                    gold18: val18 ? Number(val18) : (current.gold18 ?? 0),
+                    silver: valSilver ? Number(valSilver) : (current.silver ?? 0)
+                };
+
+                await setDoc(ref, newData);
+
+                statusBox.innerHTML = "Prices updated successfully!";
+
+                // Clear input fields after update
+                document.getElementById("price24").value = "";
+                document.getElementById("price22").value = "";
+                document.getElementById("price18").value = "";
+                document.getElementById("priceSilver").value = "";
+
+                // Reload display
+                await loadPrices();
+            } catch (err) {
+                console.error(err);
+                statusBox.innerHTML = "Error updating prices: " + err.message;
+            }
+        }
+
+        // LOGOUT
+        function logout() {
+            signOut(auth);
+            statusBox.innerHTML = "Logged out.";
+        }
+
+        // AUTH STATE CHANGE
+        onAuthStateChanged(auth, user => {
+            if (user) {
+                loginSection.style.display = "none";
+                adminSection.style.display = "block";
+                loadPrices();
+            } else {
+                loginSection.style.display = "block";
+                adminSection.style.display = "none";
+            }
+        });
+
+        // EXPOSE FUNCTIONS TO HTML (FOR onclick)
+        window.login = login;
+        window.updatePrice = updatePrice;
+        window.logout = logout;
+    </script>
+
+</body>
+</html>

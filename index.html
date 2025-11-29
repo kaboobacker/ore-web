@@ -1,66 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>ORE Jewellery UAE – Home</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORE Jewellery – Luxury Gold & Bullion in UAE</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-
-    <header>
-        <div class="logo">ORE</div>
+    <header class="top-bar">
+        <div class="logo">ORE<span> Jewellery</span></div>
         <nav>
-            <a href="index.html">Home</a>
-            <a href="bullion.html">Bullion</a>
-            <a href="jewellery.html">Jewellery</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
+            <a href="#home">Home</a>
+            <a href="#prices">Live Rates</a>
+            <a href="#collections">Collections</a>
+            <a href="#bullion">Bullion</a>
+            <a href="#contact">Contact</a>
         </nav>
     </header>
 
-    <div class="banner" style="background-image:url('images/showroom.jpg');"></div>
-
-    <section class="section">
-        <h2>Live Gold & Silver Rates (AED)</h2>
-
-        <div class="rate-table">
-            <div class="rate-header">Today's Market Price</div>
-
-            <div class="rate-row">
-                <div class="rate-label">24K Gold</div>
-                <div class="rate-value"><span class="p24">--</span></div>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Timeless Elegance in Every Gram</h1>
+            <p>Premium gold jewellery and bullion for investors and connoisseurs across the UAE.</p>
+            <a href="#prices" class="btn-primary">View Live Gold & Silver Rates</a>
+        </div>
+        <div class="hero-images">
+            <div class="hero-card">
+                <img src="https://images.pexels.com/photos/1151802/pexels-photo-1151802.jpeg" alt="Gold bangles">
+                <p>Bridal & Daily Wear Ornaments</p>
             </div>
-
-            <div class="rate-row">
-                <div class="rate-label">22K Gold</div>
-                <div class="rate-value"><span class="p22">--</span></div>
-            </div>
-
-            <div class="rate-row">
-                <div class="rate-label">18K Gold</div>
-                <div class="rate-value"><span class="p18">--</span></div>
-            </div>
-
-            <div class="rate-row">
-                <div class="rate-label">Silver</div>
-                <div class="rate-value"><span class="pSilver">--</span></div>
+            <div class="hero-card">
+                <img src="https://images.pexels.com/photos/1191531/pexels-photo-1191531.jpeg" alt="Gold coins">
+                <p>Investment-grade Gold & Silver</p>
             </div>
         </div>
     </section>
 
-    <section class="section">
-        <h2>Welcome to ORE</h2>
-        <p>
-            ORE is UAE’s trusted destination for fine jewellery and investment-grade bullion.
-            Our rates update instantly — straight from our secure price backend.
-        </p>
+    <section id="prices" class="section">
+        <h2 class="section-title">Live Gold & Silver Rates (AED)</h2>
+        <p class="section-subtitle">Prices are updated in real-time from our secure admin panel.</p>
+
+        <div class="prices-card">
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>Metal</th>
+                        <th>Purity</th>
+                        <th>Price / gram (AED)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Gold</td>
+                        <td>24K</td>
+                        <td id="gold24">Loading...</td>
+                    </tr>
+                    <tr>
+                        <td>Gold</td>
+                        <td>22K</td>
+                        <td id="gold22">Loading...</td>
+                    </tr>
+                    <tr>
+                        <td>Gold</td>
+                        <td>18K</td>
+                        <td id="gold18">Loading...</td>
+                    </tr>
+                    <tr>
+                        <td>Silver</td>
+                        <td>999</td>
+                        <td id="silver">Loading...</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p id="lastUpdated" class="last-updated">Last updated: —</p>
+        </div>
     </section>
 
-    <footer>© 2025 ORE Jewellery – UAE</footer>
+    <section id="collections" class="section muted">
+        <h2 class="section-title">Signature Jewellery Collections</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://images.pexels.com/photos/1457801/pexels-photo-1457801.jpeg" alt="Necklace set">
+                <h3>Bridal Splendour</h3>
+                <p>Handcrafted bridal sets designed to celebrate your special day with unmatched brilliance.</p>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.pexels.com/photos/1191530/pexels-photo-1191530.jpeg" alt="Rings">
+                <h3>Everyday Elegance</h3>
+                <p>Lightweight rings, chains and bangles crafted for daily comfort with timeless style.</p>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.pexels.com/photos/1038716/pexels-photo-1038716.jpeg" alt="Earings">
+                <h3>Occasion Wear</h3>
+                <p>Statement pieces to make every celebration unforgettable.</p>
+            </div>
+        </div>
+    </section>
 
+    <section id="bullion" class="section">
+        <h2 class="section-title">Investment Bullion</h2>
+        <div class="bullion-layout">
+            <div>
+                <p>At ORE, we offer globally accepted gold and silver bullion bars and coins, ideal for long-term investors and regular savers.</p>
+                <ul class="bullet-list">
+                    <li>24K gold bars in multiple denominations</li>
+                    <li>Fine silver coins and bars</li>
+                    <li>Transparent pricing linked to international markets</li>
+                    <li>Buy-back and exchange options available</li>
+                </ul>
+            </div>
+            <div class="bullion-image">
+                <img src="https://images.pexels.com/photos/2101137/pexels-photo-2101137.jpeg" alt="Gold bullion bars">
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section muted">
+        <h2 class="section-title">Visit ORE Jewellery</h2>
+        <div class="contact-grid">
+            <div>
+                <h3>Showroom – UAE</h3>
+                <p>ORE Jewellery<br>
+                Premium Gold & Bullion Showroom<br>
+                (Add your exact location here)</p>
+                <p><strong>Phone:</strong> +971-XX-XXXXXXX<br>
+                <strong>Email:</strong> info@orejewellery.com</p>
+            </div>
+            <div>
+                <h3>Business Hours</h3>
+                <p>Saturday – Thursday: 10:00 AM – 10:00 PM<br>
+                Friday: 4:00 PM – 10:00 PM</p>
+                <p class="small-text">For bulk and bullion enquiries, please contact our dealing desk.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© <span id="year"></span> ORE Jewellery. All rights reserved.</p>
+        <p class="small-text">Live prices are indicative and subject to confirmation at the showroom.</p>
+    </footer>
+
+    <script type="module" src="script.js"></script>
 </body>
-
 </html>

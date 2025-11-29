@@ -1,9 +1,14 @@
-/* GENERAL */
-body {
+* {
+    box-sizing: border-box;
     margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: #faf8f2;
-    color: #222;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #faf5ef;
+    color: #231f20;
+    line-height: 1.6;
 }
 
 a {
@@ -11,147 +16,236 @@ a {
     color: inherit;
 }
 
-h1, h2, h3 {
-    color: #b8860b;
-}
-
-p {
-    line-height: 1.7;
-}
-
-/* HEADER */
-header {
-    background: #1a1a1a;
-    padding: 20px;
-    color: #d4a017;
+.top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 14px 7%;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    backdrop-filter: blur(10px);
 }
 
-header .logo {
-    font-size: 32px;
-    font-weight: bold;
+.logo {
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 20px;
+}
+.logo span {
+    font-weight: 400;
+    font-size: 14px;
+    margin-left: 6px;
+    color: #b8891a;
 }
 
 nav a {
-    margin-left: 20px;
-    font-weight: 600;
-    color: #e8c777;
+    margin-left: 18px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #444;
 }
-
 nav a:hover {
-    color: #ffd65c;
+    color: #b8891a;
 }
 
-/* BANNER */
-.banner {
-    width: 100%;
-    height: 350px;
-    background-size: cover;
-    background-position: center;
-    border-bottom: 5px solid #d4a017;
+.hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 40px;
+    padding: 60px 7% 40px;
+    align-items: center;
 }
 
-/* GOLD PRICE BOX */
-.price-section {
-    text-align: center;
-    padding: 40px 0;
+.hero-content h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
 }
-
-.price-box {
-    font-size: 45px;
-    background: white;
-    padding: 20px 40px;
+.hero-content p {
+    color: #555;
+    margin-bottom: 20px;
+}
+.btn-primary {
     display: inline-block;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    color: #d4a017;
+    padding: 12px 26px;
+    border-radius: 999px;
+    background: #b8891a;
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
+.btn-primary:hover {
+    filter: brightness(0.95);
+}
+
+.hero-images {
+    display: grid;
+    gap: 14px;
+}
+.hero-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+.hero-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.hero-card p {
+    padding: 10px 14px 14px;
+    font-size: 14px;
+}
+
+/* Sections */
 
 .section {
-    padding: 40px;
-    text-align: center;
+    padding: 40px 7%;
+}
+.section.muted {
+    background: #f3ebe0;
+}
+.section-title {
+    font-size: 26px;
+    margin-bottom: 8px;
+}
+.section-subtitle {
+    color: #6b6b6b;
+    margin-bottom: 20px;
 }
 
-.gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+/* Prices */
+
+.prices-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    max-width: 600px;
 }
 
-.gallery img {
-    width: 280px;
-    height: 280px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+.price-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
 }
-
-/* FOOTER */
-footer {
-    background: #1a1a1a;
-    color: #d4a017;
-    padding: 25px;
-    text-align: center;
-    margin-top: 40px;
+.price-table th,
+.price-table td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    font-size: 14px;
 }
-
-/* MOBILE */
-@media(max-width: 768px) {
-    header {
-        flex-direction: column;
-        text-align: center;
-    }
-    nav {
-        margin-top: 15px;
-    }
-    .price-box {
-        font-size: 32px;
-    }
-}
-
-
-/* PRICE TABLE – PREMIUM UAE STYLE */
-.rate-table {
-    max-width: 500px;
-    margin: 40px auto;
-    background: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
-    overflow: hidden;
-    border: 2px solid #e1c078;
-}
-
-.rate-header {
-    background: #1a1a1a;
-    color: #d4a017;
-    padding: 18px;
-    font-size: 22px;
-    text-align: center;
+.price-table th {
     font-weight: 600;
+    color: #777;
 }
-
-.rate-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 20px;
-    border-bottom: 1px solid #f0e6c8;
-}
-
-.rate-row:last-child {
+.price-table tbody tr:last-child td {
     border-bottom: none;
 }
-
-.rate-label {
-    font-size: 18px;
-    font-weight: 600;
-    color: #946f05;
+.last-updated {
+    font-size: 12px;
+    color: #777;
 }
 
-.rate-value {
-    font-size: 20px;
-    font-weight: bold;
-    color: #d4a017;
+/* Gallery */
+
+.gallery {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    margin-top: 20px;
+}
+.gallery-item {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+}
+.gallery-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+.gallery-item h3 {
+    padding: 12px 14px 4px;
+    font-size: 16px;
+}
+.gallery-item p {
+    padding: 0 14px 14px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Bullion */
+
+.bullion-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 30px;
+    margin-top: 16px;
+    align-items: center;
+}
+.bullet-list {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+.bullet-list li {
+    margin-bottom: 6px;
+}
+.bullion-image img {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+/* Contact */
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-top: 16px;
+}
+.small-text {
+    font-size: 12px;
+    color: #777;
+}
+
+/* Footer */
+
+.footer {
+    padding: 18px 7%;
+    text-align: center;
+    font-size: 13px;
+    background: #1f1b18;
+    color: #f3ebdf;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+    .hero {
+        grid-template-columns: minmax(0, 1fr);
+        padding-top: 30px;
+    }
+    .bullion-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    nav {
+        margin-top: 8px;
+    }
+    nav a {
+        margin-left: 0;
+        margin-right: 14px;
+    }
 }
