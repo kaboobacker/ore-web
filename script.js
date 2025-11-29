@@ -1,9 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-import {
-    getFirestore,
-    doc,
-    onSnapshot
-} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+import { doc, getFirestore, onSnapshot } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
 // SAME CONFIG AS ADMIN PANEL
 const firebaseConfig = {
@@ -19,6 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// GET ELEMENTS BY ID
 const el24 = document.getElementById("gold24");
 const el22 = document.getElementById("gold22");
 const el18 = document.getElementById("gold18");
@@ -35,24 +32,24 @@ function formatPrice(v) {
     return Number(v).toFixed(2);
 }
 
-// LIVE SUBSCRIPTION TO PRICES
 const ref = doc(db, "settings", "gold");
+
 onSnapshot(ref, (snap) => {
     if (snap.exists()) {
         const data = snap.data();
-        if (el24) el24.textContent = formatPrice(data.gold24);
-        if (el22) el22.textContent = formatPrice(data.gold22);
-        if (el18) el18.textContent = formatPrice(data.gold18);
-        if (elSilver) elSilver.textContent = formatPrice(data.silver);
+
+        el24.textContent = formatPrice(data.gold24);
+        el22.textContent = formatPrice(data.gold22);
+        el18.textContent = formatPrice(data.gold18);
+        elSilver.textContent = formatPrice(data.silver);
 
         if (lastUpdated) {
-            const now = new Date();
-            lastUpdated.textContent = "Last updated: " + now.toLocaleString();
+            lastUpdated.textContent = "Last updated: " + new Date().toLocaleString();
         }
     } else {
-        if (el24) el24.textContent = "-";
-        if (el22) el22.textContent = "-";
-        if (el18) el18.textContent = "-";
-        if (elSilver) elSilver.textContent = "-";
+        el24.textContent = "-";
+        el22.textContent = "-";
+        el18.textContent = "-";
+        elSilver.textContent = "-";
     }
 });
