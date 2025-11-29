@@ -1,0 +1,157 @@
+/* GENERAL */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #faf8f2;
+    color: #222;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1, h2, h3 {
+    color: #b8860b;
+}
+
+p {
+    line-height: 1.7;
+}
+
+/* HEADER */
+header {
+    background: #1a1a1a;
+    padding: 20px;
+    color: #d4a017;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+nav a {
+    margin-left: 20px;
+    font-weight: 600;
+    color: #e8c777;
+}
+
+nav a:hover {
+    color: #ffd65c;
+}
+
+/* BANNER */
+.banner {
+    width: 100%;
+    height: 350px;
+    background-size: cover;
+    background-position: center;
+    border-bottom: 5px solid #d4a017;
+}
+
+/* GOLD PRICE BOX */
+.price-section {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.price-box {
+    font-size: 45px;
+    background: white;
+    padding: 20px 40px;
+    display: inline-block;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    color: #d4a017;
+}
+
+.section {
+    padding: 40px;
+    text-align: center;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.gallery img {
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
+/* FOOTER */
+footer {
+    background: #1a1a1a;
+    color: #d4a017;
+    padding: 25px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* MOBILE */
+@media(max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+    nav {
+        margin-top: 15px;
+    }
+    .price-box {
+        font-size: 32px;
+    }
+}
+
+
+/* PRICE TABLE – PREMIUM UAE STYLE */
+.rate-table {
+    max-width: 500px;
+    margin: 40px auto;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+    overflow: hidden;
+    border: 2px solid #e1c078;
+}
+
+.rate-header {
+    background: #1a1a1a;
+    color: #d4a017;
+    padding: 18px;
+    font-size: 22px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.rate-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+    border-bottom: 1px solid #f0e6c8;
+}
+
+.rate-row:last-child {
+    border-bottom: none;
+}
+
+.rate-label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #946f05;
+}
+
+.rate-value {
+    font-size: 20px;
+    font-weight: bold;
+    color: #d4a017;
+}

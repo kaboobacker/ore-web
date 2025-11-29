@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gold & Silver Price Admin Panel</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f6f2e8;
+            padding: 40px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            width: 350px;
+            margin: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        input,
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background: #d4a017;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #b98b13;
+        }
+
+        #logoutBtn {
+            background: #555;
+        }
+
+        #status {
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h2>Admin Login</h2>
+
+        <!-- LOGIN AREA -->
+        <div id="loginSection">
+            <input type="email" id="email" placeholder="Email">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="login()">Login</button>
+        </div>
+
+        <!-- ADMIN AREA -->
+        <div id="adminSection" style="display:none;">
+            <h3>Update Gold & Silver Prices</h3>
+
+            <p>24K Gold (AED): <b id="p24">Loading...</b></p>
+            <input type="number" id="price24" placeholder="Update 24K Price">
+
+            <p>22K Gold (AED): <b id="p22">Loading...</b></p>
+            <input type="number" id="price22" placeholder="Update 22K Price">
+
+            <p>18K Gold (AED): <b id="p18">Loading...</b></p>
+            <input type="number" id="price18" placeholder="Update 18K Price">
+
+            <p>Silver Price (AED): <b id="pSilver">Loading...</b></p>
+            <input type="number" id="priceSilver" placeholder="Update Silver Price">
+
+            <button onclick="updatePrice()">Save Prices</button>
+            <button id="logoutBtn" onclick="logout()">Logout</button>
+
+            <div id="status"></div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK (Modular) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+        import {
+            getAuth,
+            signInWithEmailAndPassword,
+            signOut,
+            onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+        import {
+            getFirestore,
+            doc,
+            getDoc,
+            setDoc
+        } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAhrwhvGbPd96wJk1tlA_PTORngP0SdqW0",
+            authDomain: "gold-live-price-c60cb.firebaseapp.com",
+            projectId: "gold-live-price-c60cb",
+            storageBucket: "gold-live-price-c60cb.firebasestorage.app",
+            messagingSenderId: "288803626436",
+            appId: "1:288803626436:web:5296a37e04fe37a501d891"
+        };
+
+        // INIT FIREBASE
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const loginSection = document.getElementById("loginSection");
+        const adminSection = document.getElementById("adminSection");
+        const statusBox = document.getElementById("status");
+
+        // LOGIN
+        async function login() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                statusBox.innerHTML = "Logged in!";
+            } catch (err) {
+                statusBox.innerHTML = err.message;
+            }
+        }
+
+        // LOAD PRICES
+        async function loadPrice() {
+            const ref = doc(db, "settings", "gold");
+            const snap = await getDoc(ref);
+
+            if (snap.exists()) {
+                const data = snap.data();
+
+                document.getElementById("p24").innerText = data["24k"];
+                document.getElementById("p22").innerText = data["22k"];
+                document.getElementById("p18").innerText = data["18k"];
+                document.getElementById("pSilver").innerText = data["silver"];
+            }
+        }
+
+        // UPDATE PRICES
+        async function updatePrice() {
+
+            const v24 = document.getElementById("price24").value;
+            const v22 = document.getElementById("price22").value;
+            const v18 = document.getElementById("price18").value;
+            const vSilver = document.getElementById("priceSilver").value;
+
+            const ref = doc(db, "settings", "gold");
+
+            await setDoc(ref, {
+                "24k": Number(v24),
+                "22k": Number(v22),
+                "18k": Number(v18),
+                "silver": Number(vSilver)
+            });
+
+            statusBox.innerHTML = "Prices Updated!";
+            loadPrice();
+        }
+
+        // LOGOUT
+        function logout() {
+            signOut(auth);
+            statusBox.innerHTML = "Logged out.";
+        }
+
+        // AUTH STATE HANDLER
+        onAuthStateChanged(auth, user => {
+            if (user) {
+                loginSection.style.display = "none";
+                adminSection.style.display = "block";
+                loadPrice();
+            } else {
+                loginSection.style.display = "block";
+                adminSection.style.display = "none";
+            }
+        });
+
+        // MAKE FUNCTIONS AVAILABLE TO HTML
+        window.login = login;
+        window.updatePrice = updatePrice;
+        window.logout = logout;
+    </script>
+
+</body>
+
+</html>
