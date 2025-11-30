@@ -1,0 +1,30 @@
+# Required Images for ORE Jewellery Website
+# Place all images in this ./images/ folder
+
+## Homepage (index.html)
+- jewellery-1.jpg (Hero card - Artisan-crafted jewellery)
+- bullion-1.jpg (Hero card - Investment-grade bullion)
+- bridal-collection.jpg (Gallery - Heritage Bridal Collection)
+- everyday-luxury.jpg (Gallery - Everyday Luxury)
+- statement-pieces.jpg (Gallery - Signature Statement Pieces)
+- bullion-bars.jpg (Bullion section - Gold bars)
+
+## Collections Page (collections.html)
+- bridal-collection.jpg (Bridal collection card)
+- royal-bridal.jpg (Royal Treasures collection)
+- daily-elegance.jpg (Daily Elegance collection)
+- modern-classics.jpg (Modern Classics collection)
+- celebrity-statement.jpg (Celebrity Statement collection)
+- couture.jpg (Couture Collection)
+
+## Bullion Page (bullion.html)
+- bullion-bars.jpg (Hero and product images)
+- jewelry-rings.jpg (Silver coins product)
+- jewellery-bangles.jpg (Mixed metals product)
+
+## Showrooms Page (showrooms.html)
+- showroom-main.jpg (Downtown Dubai showroom)
+- showroom-mall.jpg (The Galleria showroom)
+- trading-desk.jpg (Bullion Trading Centre)
+
+## Total: 16 unique images needed
