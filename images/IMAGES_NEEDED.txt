@@ -1,30 +1,60 @@
-# Required Images for ORE Jewellery Website
+# ORE BULLION JEWELLERY - Required Images
 # Place all images in this ./images/ folder
 
+===================================
+COMPANY INFORMATION
+===================================
+ORE BULLION JEWELLERY
+Jewelry Wholesaler - Retail & Wholesale
+We buy & sell gold: 18k - 22k - 24k
+Dubai, United Arab Emirates
+
+Contact: +971 50 665 4770 | +971 50 665 3770
+
+===================================
+REQUIRED IMAGES (16 total)
+===================================
+
 ## Homepage (index.html)
-- jewellery-1.jpg (Hero card - Artisan-crafted jewellery)
-- bullion-1.jpg (Hero card - Investment-grade bullion)
-- bridal-collection.jpg (Gallery - Heritage Bridal Collection)
-- everyday-luxury.jpg (Gallery - Everyday Luxury)
-- statement-pieces.jpg (Gallery - Signature Statement Pieces)
-- bullion-bars.jpg (Bullion section - Gold bars)
+1. jewellery-1.jpg - Hero card showcasing artisan-crafted jewellery
+2. bullion-1.jpg - Hero card showing investment-grade gold bullion
+3. bridal-collection.jpg - Heritage bridal jewellery collection
+4. everyday-luxury.jpg - Contemporary everyday wear jewellery
+5. statement-pieces.jpg - Bold signature statement jewellery pieces
+6. bullion-bars.jpg - Certified gold bullion bars
 
 ## Collections Page (collections.html)
-- bridal-collection.jpg (Bridal collection card)
-- royal-bridal.jpg (Royal Treasures collection)
-- daily-elegance.jpg (Daily Elegance collection)
-- modern-classics.jpg (Modern Classics collection)
-- celebrity-statement.jpg (Celebrity Statement collection)
-- couture.jpg (Couture Collection)
+7. bridal-collection.jpg - (Same as #3) Bridal collection showcase
+8. royal-bridal.jpg - Royal treasures bridal collection
+9. daily-elegance.jpg - Daily elegance jewellery collection
+10. modern-classics.jpg - Modern classics collection
+11. celebrity-statement.jpg - Celebrity statement pieces
+12. couture.jpg - Couture luxury collection
 
 ## Bullion Page (bullion.html)
-- bullion-bars.jpg (Hero and product images)
-- jewelry-rings.jpg (Silver coins product)
-- jewellery-bangles.jpg (Mixed metals product)
+13. bullion-bars.jpg - (Same as #6) Gold bars for products
+14. jewelry-rings.jpg - Silver coins/fine jewellery
+15. jewellery-bangles.jpg - Mixed precious metals/bangles
 
 ## Showrooms Page (showrooms.html)
-- showroom-main.jpg (Downtown Dubai showroom)
-- showroom-mall.jpg (The Galleria showroom)
-- trading-desk.jpg (Bullion Trading Centre)
+16. showroom-main.jpg - Downtown Dubai main showroom
+17. showroom-mall.jpg - The Galleria mall location
+18. trading-desk.jpg - Bullion trading centre
 
-## Total: 16 unique images needed
+===================================
+IMAGE SPECIFICATIONS
+===================================
+- Format: JPG recommended
+- Minimum width: 800px
+- Aspect ratio: 4:3 or 16:9
+- Focus on: Gold jewellery, bullion bars, professional showroom settings
+- Style: Professional, clean, well-lit product photography
+
+===================================
+NOTES
+===================================
+- Some images are reused across pages (bridal-collection.jpg, bullion-bars.jpg)
+- Total unique images needed: 16
+- All paths are relative: ./images/filename.jpg
+- Images should showcase gold in 18k, 22k, and 24k varieties
+- Professional photography recommended for retail/wholesale presentation
