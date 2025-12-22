@@ -73,44 +73,72 @@
             </div>
         </div>
     </section>
-    <section id="prices" class="section">
-        <h2 class="section-title">Real-Time Precious Metal Rates</h2>
-        <p class="section-subtitle">Live market prices updated continuously. All rates in AED per gram, inclusive of
-            current market conditions.</p>
+    <section id="prices" class="section prices-section-modern">
+        <div class="prices-container">
+            <div class="prices-content">
+                <h2 class="section-title">Real-Time Precious Metal Rates</h2>
+                <p class="section-subtitle">Live market prices updated continuously. All rates in AED per gram, inclusive of
+                    current market conditions.</p>
 
-        <div class="prices-card">
-            <table class="price-table">
-                <thead>
-                    <tr>
-                        <th>Precious Metal</th>
-                        <th>Purity Grade</th>
-                        <th>Rate per Gram (AED)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Gold</td>
-                        <td>24K</td>
-                        <td id="gold24">Loading...</td>
-                    </tr>
-                    <tr>
-                        <td>Gold</td>
-                        <td>22K</td>
-                        <td id="gold22">Loading...</td>
-                    </tr>
-                    <tr>
-                        <td>Gold</td>
-                        <td>18K</td>
-                        <td id="gold18">Loading...</td>
-                    </tr>
-                    <tr>
-                        <td>Silver</td>
-                        <td>999</td>
-                        <td id="silver">Loading...</td>
-                    </tr>
-                </tbody>
-            </table>
-            <p id="lastUpdated" class="last-updated">Last updated: —</p>
+                <div class="prices-card-modern">
+                    <div class="price-item">
+                        <div class="price-item-header">
+                            <span class="metal-name">Gold 24K</span>
+                            <span class="purity-badge">99.9%</span>
+                        </div>
+                        <div class="price-value" id="gold24">Loading...</div>
+                        <div class="price-label">AED per gram</div>
+                    </div>
+
+                    <div class="price-item">
+                        <div class="price-item-header">
+                            <span class="metal-name">Gold 22K</span>
+                            <span class="purity-badge">91.6%</span>
+                        </div>
+                        <div class="price-value" id="gold22">Loading...</div>
+                        <div class="price-label">AED per gram</div>
+                    </div>
+
+                    <div class="price-item">
+                        <div class="price-item-header">
+                            <span class="metal-name">Gold 18K</span>
+                            <span class="purity-badge">75.0%</span>
+                        </div>
+                        <div class="price-value" id="gold18">Loading...</div>
+                        <div class="price-label">AED per gram</div>
+                    </div>
+
+                    <div class="price-item">
+                        <div class="price-item-header">
+                            <span class="metal-name">Silver</span>
+                            <span class="purity-badge">99.9%</span>
+                        </div>
+                        <div class="price-value" id="silver">Loading...</div>
+                        <div class="price-label">AED per gram</div>
+                    </div>
+                </div>
+
+                <p id="lastUpdated" class="last-updated-modern">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 4 23 10 17 10"></polyline>
+                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                    </svg>
+                    Last updated: —
+                </p>
+            </div>
+
+            <div class="prices-image">
+                <img src="images/collections/1kgGoldBar.jpg" alt="Investment Grade Gold Bullion">
+                <div class="prices-image-overlay">
+                    <div class="certified-badge">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            <path d="M9 12l2 2 4-4"></path>
+                        </svg>
+                        <span>Certified Authentic</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -226,6 +254,42 @@
     </section>
 
     <footer id="footer-placeholder" class="footer"></footer>
+
+    <!-- Floating Live Rate Widget -->
+    <div class="floating-rate-widget" id="floatingWidget">
+        <div class="widget-header" id="widgetHeader">
+            <div class="widget-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                <span>Live Rates</span>
+            </div>
+            <button class="widget-toggle" id="widgetToggle">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+            </button>
+        </div>
+        <div class="widget-content" id="widgetContent">
+            <div class="widget-rate">
+                <span class="widget-metal">24K</span>
+                <span class="widget-price" id="widget-gold24">—</span>
+            </div>
+            <div class="widget-rate">
+                <span class="widget-metal">22K</span>
+                <span class="widget-price" id="widget-gold22">—</span>
+            </div>
+            <div class="widget-rate">
+                <span class="widget-metal">18K</span>
+                <span class="widget-price" id="widget-gold18">—</span>
+            </div>
+            <div class="widget-rate">
+                <span class="widget-metal">Silver</span>
+                <span class="widget-price" id="widget-silver">—</span>
+            </div>
+        </div>
+    </div>
 
     <script type="module" src="script.js"></script>
 </body>

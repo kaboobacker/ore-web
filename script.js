@@ -23,8 +23,24 @@ const elSilver = document.getElementById("silver");
 const lastUpdated = document.getElementById("lastUpdated");
 const yearSpan = document.getElementById("year");
 
+// Floating Widget Elements
+const widgetGold24 = document.getElementById("widget-gold24");
+const widgetGold22 = document.getElementById("widget-gold22");
+const widgetGold18 = document.getElementById("widget-gold18");
+const widgetSilver = document.getElementById("widget-silver");
+const floatingWidget = document.getElementById("floatingWidget");
+const widgetToggle = document.getElementById("widgetToggle");
+const widgetHeader = document.getElementById("widgetHeader");
+
 if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
+}
+
+// Widget Toggle Functionality
+if (widgetHeader && floatingWidget) {
+    widgetHeader.addEventListener('click', () => {
+        floatingWidget.classList.toggle('minimized');
+    });
 }
 
 function formatPrice(v) {
@@ -41,10 +57,17 @@ onSnapshot(ref, (snap) => {
         const data = snap.data();
         console.log("Live rates updated:", data);
 
+        // Update main section
         if (el24) el24.textContent = formatPrice(data.gold24);
         if (el22) el22.textContent = formatPrice(data.gold22);
         if (el18) el18.textContent = formatPrice(data.gold18);
         if (elSilver) elSilver.textContent = formatPrice(data.silver);
+
+        // Update floating widget
+        if (widgetGold24) widgetGold24.textContent = formatPrice(data.gold24);
+        if (widgetGold22) widgetGold22.textContent = formatPrice(data.gold22);
+        if (widgetGold18) widgetGold18.textContent = formatPrice(data.gold18);
+        if (widgetSilver) widgetSilver.textContent = formatPrice(data.silver);
 
         if (lastUpdated) {
             lastUpdated.textContent = "Last updated: " + new Date().toLocaleString();
@@ -55,6 +78,12 @@ onSnapshot(ref, (snap) => {
         if (el22) el22.textContent = "-";
         if (el18) el18.textContent = "-";
         if (elSilver) elSilver.textContent = "-";
+
+        // Update floating widget
+        if (widgetGold24) widgetGold24.textContent = "-";
+        if (widgetGold22) widgetGold22.textContent = "-";
+        if (widgetGold18) widgetGold18.textContent = "-";
+        if (widgetSilver) widgetSilver.textContent = "-";
     }
 }, (error) => {
     console.error("Firebase Snapshot Error:", error);
