@@ -34,22 +34,31 @@ function formatPrice(v) {
 
 const ref = doc(db, "settings", "gold");
 
+console.log("Connecting to Firebase for live rates...");
+
 onSnapshot(ref, (snap) => {
     if (snap.exists()) {
         const data = snap.data();
+        console.log("Live rates updated:", data);
 
-        el24.textContent = formatPrice(data.gold24);
-        el22.textContent = formatPrice(data.gold22);
-        el18.textContent = formatPrice(data.gold18);
-        elSilver.textContent = formatPrice(data.silver);
+        if (el24) el24.textContent = formatPrice(data.gold24);
+        if (el22) el22.textContent = formatPrice(data.gold22);
+        if (el18) el18.textContent = formatPrice(data.gold18);
+        if (elSilver) elSilver.textContent = formatPrice(data.silver);
 
         if (lastUpdated) {
             lastUpdated.textContent = "Last updated: " + new Date().toLocaleString();
         }
     } else {
-        el24.textContent = "-";
-        el22.textContent = "-";
-        el18.textContent = "-";
-        elSilver.textContent = "-";
+        console.warn("No price data found in Firebase (settings/gold)");
+        if (el24) el24.textContent = "-";
+        if (el22) el22.textContent = "-";
+        if (el18) el18.textContent = "-";
+        if (elSilver) elSilver.textContent = "-";
+    }
+}, (error) => {
+    console.error("Firebase Snapshot Error:", error);
+    if (lastUpdated) {
+        lastUpdated.textContent = "Live update error: " + error.code;
     }
 });
