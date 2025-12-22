@@ -51,6 +51,15 @@ IMAGE SPECIFICATIONS
 - Style: Professional, clean, well-lit product photography
 
 ===================================
+VIDEO FILES
+===================================
+- banner_1.mp4 - Main hero video (current: desktop version)
+- banner_1_mobile.mp4 - NEEDED: Smaller optimized video for mobile devices
+  * Recommended: 720p resolution, lower bitrate
+  * Target file size: < 2MB for faster mobile loading
+  * Same content as banner_1.mp4 but optimized
+
+===================================
 NOTES
 ===================================
 - Some images are reused across pages (bridal-collection.jpg, bullion-bars.jpg)
@@ -58,3 +67,4 @@ NOTES
 - All paths are relative: ./images/filename.jpg
 - Images should showcase gold in 18k, 22k, and 24k varieties
 - Professional photography recommended for retail/wholesale presentation
+- Mobile video will fallback to desktop version if not available
