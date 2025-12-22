@@ -15,12 +15,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function initMenuToggle() {
         const menuToggle = document.querySelector('.menu-toggle');
         const nav = document.querySelector('nav');
-        if (menuToggle && nav) {
-            menuToggle.addEventListener('click', () => {
+        const overlay = document.querySelector('.menu-overlay');
+
+        if (menuToggle && nav && overlay) {
+            const toggleMenu = () => {
                 menuToggle.classList.toggle('active');
                 nav.classList.toggle('active');
+                overlay.classList.toggle('active');
                 document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
-            });
+            };
+
+            menuToggle.addEventListener('click', toggleMenu);
+            overlay.addEventListener('click', toggleMenu);
 
             // Close menu when a link is clicked
             const navLinks = nav.querySelectorAll('a');
@@ -28,8 +34,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 link.addEventListener('click', () => {
                     menuToggle.classList.remove('active');
                     nav.classList.remove('active');
+                    overlay.classList.remove('active');
                     document.body.style.overflow = '';
                 });
+            });
+
+            // Close menu on ESC key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && nav.classList.contains('active')) {
+                    menuToggle.classList.remove('active');
+                    nav.classList.remove('active');
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
             });
         }
     }
