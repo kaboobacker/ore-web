@@ -314,19 +314,36 @@
             margin-bottom: calc(var(--spacing-unit) * 6);
         }
 
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: calc(var(--spacing-unit) * 4);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
         .pricing-card {
             background: white;
             border-radius: 20px;
             padding: calc(var(--spacing-unit) * 5);
             border: 2px solid var(--neutral-300);
-            max-width: 500px;
             box-shadow: var(--shadow-lg);
+            transition: all var(--transition-base);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
         }
 
         .pricing-card.featured {
             border-color: var(--gold-600);
             background: linear-gradient(135deg, var(--gold-100) 0%, white 100%);
-            transform: scale(1.05);
+            transform: scale(1.02);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.02) translateY(-4px);
         }
 
         .pricing-header {
@@ -405,8 +422,16 @@
                 padding: calc(var(--spacing-unit) * 8) 5%;
             }
 
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
             .pricing-card.featured {
                 transform: scale(1);
+            }
+
+            .pricing-card.featured:hover {
+                transform: scale(1) translateY(-4px);
             }
         }
     </style>
@@ -626,23 +651,6 @@
         <h2>Why Choose ORE for Bullion Trading</h2>
         <div class="features-grid">
             <div class="feature-card">
-                <span class="feature-icon">🔒</span>
-                <h3>Vault Security</h3>
-                <p>State-of-the-art vault storage with full insurance coverage and secure transportation services
-                    available.</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">📊</span>
-                <h3>Market Intelligence</h3>
-                <p>Daily market updates and expert analysis to inform your investment decisions with confidence.</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">💼</span>
-                <h3>Portfolio Consultation</h3>
-                <p>Dedicated specialists provide personalized guidance on bullion allocation and wealth preservation
-                    strategies.</p>
-            </div>
-            <div class="feature-card">
                 <span class="feature-icon">🔄</span>
                 <h3>Guaranteed Buy-Back</h3>
                 <p>Competitive buy-back programs ensure liquidity and fair market value for your precious metals.</p>
@@ -664,20 +672,57 @@
         <h2>Bullion Trading Plans</h2>
         <p class="pricing-subtitle">Flexible options tailored to your investment goals and portfolio size.</p>
 
-        <div class="pricing-card featured">
-            <div class="pricing-header">
-                <h3 class="pricing-title">Premium Investor</h3>
-                <p class="pricing-desc">For serious collectors and institutional investors</p>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3 class="pricing-title">Starter Plan</h3>
+                    <p class="pricing-desc">Perfect for first-time investors</p>
+                </div>
+                <ul class="pricing-features">
+                    <li>Minimum investment: 10g gold</li>
+                    <li>Standard market rates</li>
+                    <li>Basic documentation</li>
+                    <li>Monthly market updates</li>
+                    <li>Secure pickup or delivery</li>
+                    <li>Email support</li>
+                </ul>
+                <a href="contact.html" class="cta-button">Get Started</a>
             </div>
-            <ul class="pricing-features">
-                <li>Dedicated account manager</li>
-                <li>Priority vault access</li>
-                <li>Bulk discounts available</li>
-                <li>Bi-weekly market reports</li>
-                <li>Insurance included</li>
-                <li>Free consultations</li>
-            </ul>
-            <a href="contact.html" class="cta-button">Get Started</a>
+
+            <div class="pricing-card featured">
+                <div class="pricing-header">
+                    <h3 class="pricing-title">Standard Investor</h3>
+                    <p class="pricing-desc">Most popular choice for regular investors</p>
+                </div>
+                <ul class="pricing-features">
+                    <li>Minimum investment: 100g gold</li>
+                    <li>Preferred pricing tiers</li>
+                    <li>Full certification package</li>
+                    <li>Weekly market analysis</li>
+                    <li>Optional vault storage</li>
+                    <li>Priority phone support</li>
+                    <li>Buy-back guarantee</li>
+                </ul>
+                <a href="contact.html" class="cta-button">Get Started</a>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3 class="pricing-title">Premium Investor</h3>
+                    <p class="pricing-desc">For serious collectors and institutional investors</p>
+                </div>
+                <ul class="pricing-features">
+                    <li>Minimum investment: 1kg gold</li>
+                    <li>Dedicated account manager</li>
+                    <li>Exclusive bulk discounts</li>
+                    <li>Priority vault access</li>
+                    <li>Daily market reports</li>
+                    <li>Full insurance coverage</li>
+                    <li>Free portfolio consultations</li>
+                    <li>24/7 concierge support</li>
+                </ul>
+                <a href="contact.html" class="cta-button">Get Started</a>
+            </div>
         </div>
     </section>
 
