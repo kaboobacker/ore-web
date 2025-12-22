@@ -620,18 +620,26 @@ nav a.active::after {
 .footer-social {
     display: flex;
     gap: calc(var(--spacing-unit) * 2);
-    margin-top: calc(var(--spacing-unit) * 3);
 }
 
 .footer-social a {
     color: var(--neutral-400);
-    font-size: 14px;
     text-decoration: none;
-    transition: color var(--transition-fast);
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-social a svg {
+    width: 20px;
+    height: 20px;
+    transition: all var(--transition-fast);
 }
 
 .footer-social a:hover {
     color: var(--gold-400);
+    transform: translateY(-2px);
 }
 
 .footer-heading {
