@@ -7,8 +7,31 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 headerPlaceholder.innerHTML = data;
                 highlightActivePage();
+                initMenuToggle();
             })
             .catch(error => console.error('Error loading header:', error));
+    }
+
+    function initMenuToggle() {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        if (menuToggle && nav) {
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('active');
+                nav.classList.toggle('active');
+                document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+            });
+
+            // Close menu when a link is clicked
+            const navLinks = nav.querySelectorAll('a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    menuToggle.classList.remove('active');
+                    nav.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
     }
 
     // Load Footer
