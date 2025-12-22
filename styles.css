@@ -617,6 +617,23 @@ nav a.active::after {
     letter-spacing: 0.5px;
 }
 
+.footer-social {
+    display: flex;
+    gap: calc(var(--spacing-unit) * 2);
+    margin-top: calc(var(--spacing-unit) * 3);
+}
+
+.footer-social a {
+    color: var(--neutral-400);
+    font-size: 14px;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.footer-social a:hover {
+    color: var(--gold-400);
+}
+
 .footer-heading {
     font-size: 16px;
     font-weight: 700;
